@@ -1,6 +1,7 @@
 package main
 
 import(
+
 	"github.com/gin-gonic/gin"
 
 )
@@ -10,5 +11,13 @@ type album struct {
 	Title 	string `json:"title"`
 	Artist 	string `json:"artist"`
 	Price 	string `json:"price"`
+}
+
+func main(){
+	router := gin.Default()
+}
+
+func getAlbums(c *gin.Context){
+	
 }
 
