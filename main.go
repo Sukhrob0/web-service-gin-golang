@@ -29,3 +29,20 @@ func getAlbums(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, albums )
 }
 
+func PostAlbums(c *gin.Context){
+	var NewAlbum album
+	if err := c.BindJSON(&NewAlbum); err != nil {
+		return
+	}
+	albums = append(albums, NewAlbum)
+	c.IndentedJSON(http.StatusCreated, NewAlbum)
+}
+func getAlbumByID(c *gin.Context) {
+	id := c.Param("id")
+	for _, a := range albums {
+		if a.ID == id {
+			c.IndentedJSON(http.StatusOK, a)
+		}
+	}
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+}
